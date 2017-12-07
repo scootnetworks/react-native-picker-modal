@@ -9,4 +9,18 @@ yarn add react-native-picker-modal
 ```
 
 ## Usage
-It receives and passes along the same props that the [react-native Picker](https://facebook.github.io/react-native/docs/picker.html) receives.
+It receives and passes along the same props and children that the [react-native Picker](https://facebook.github.io/react-native/docs/picker.html) receives.
+
+```jsx
+import PickerModal from 'react-native-picker-modal';
+import { Picker } from 'react-native';
+
+// ...
+
+<PickerModal
+  selectedValue={this.state.language}
+  onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+  <Picker.Item label="Java" value="java" />
+  <Picker.Item label="JavaScript" value="js" />
+</PickerModal>
+```
