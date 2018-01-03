@@ -1,18 +1,44 @@
 import React from "react";
-import { Modal, Picker, StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import {
+  Modal,
+  Picker,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View
+} from "react-native";
 
 const styles = StyleSheet.create({
-  modal: {
+  modalContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    padding: 0,
+    backgroundColor: '#d1d5db',
   },
   textContainer: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   text: {
-    paddingLeft: 5
+    textAlign: 'center'
+  },
+  buttonBar: {
+    alignItems: 'flex-end',
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: 'lightgrey',
+    backgroundColor: '#f0f0f2',
+  },
+  buttonView: {
+    padding: 12,
+  },
+  buttonText: {
+    color: '#006BFF',
+    fontSize: 16,
+    fontWeight: 'bold',
   }
 });
 
@@ -38,15 +64,11 @@ class PickerModal extends React.Component {
   }
 
   closePicker() {
-    this.setState(state => {
-      state.open = false;
-      return state;
-    });
+    this.setState({ open: false });
   }
 
   onValueChange() {
     this.props.onValueChange(...arguments);
-    this.closePicker();
   }
 
   getSelectedItem() {
@@ -68,21 +90,49 @@ class PickerModal extends React.Component {
     
     const picker = (
       <Modal
-        style={styles.modal}
+        animationType={'slide'}
         visible={this.state.open}
-        onRequestClose={this.bindings.togglePicker}
-      >
-        <Picker {...props} onValueChange={this.bindings.onValueChange}>{this.props.children}</Picker>
+        transparent={true}
+        onRequestClose={this.bindings.togglePicker}>
+        <TouchableWithoutFeedback onPress={this.bindings.closePicker}>  
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <View style={styles.buttonBar}>
+                <ModalButton label="Done" onPress={this.bindings.closePicker} />
+              </View>  
+              <Picker {...props} onValueChange={this.bindings.onValueChange}>{this.props.children}</Picker>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
     );
 
     return (
       <View>
         <TouchableHighlight style={[styles.textContainer, this.props.style]} onPress={this.bindings.togglePicker}>
-          <Text style={styles.text}>{this.getSelectedItem().props.label}</Text>
+          <View style={[styles.textContainer, this.props.style]}>
+            <Text style={styles.text}>{this.getSelectedItem().props.label}</Text>
+          </View>
         </TouchableHighlight>
         {picker}
       </View>
+    );
+  }
+}
+
+class ModalButton extends React.Component {
+  render() {
+    const { label, onPress } = this.props;
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <View style={styles.buttonView }>
+          <Text
+            allowFontScaling={false}
+            style={styles.buttonText}>
+            {label}
+          </Text>
+        </View>  
+      </TouchableOpacity>
     );
   }
 }
