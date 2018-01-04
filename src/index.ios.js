@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   View
 } from "react-native";
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -21,10 +22,13 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
-    textAlign: 'center'
+    textAlign: 'center',
+    flex: 1,
   },
   buttonBar: {
     alignItems: 'flex-end',
@@ -112,6 +116,7 @@ class PickerModal extends React.Component {
         <TouchableHighlight underlayColor={'#DDD'} style={[styles.textContainer, this.props.style]} onPress={this.bindings.togglePicker}>
           <View style={[styles.textContainer, this.props.style]}>
             <Text style={styles.text}>{this.getSelectedItem().props.label}</Text>
+            <Icon name="arrow-drop-down" size={30} color="black" />
           </View>
         </TouchableHighlight>
         {picker}
