@@ -109,7 +109,7 @@ class PickerModal extends React.Component {
 
     return (
       <View>
-        <TouchableHighlight style={[styles.textContainer, this.props.style]} onPress={this.bindings.togglePicker}>
+        <TouchableHighlight underlayColor={'#DDD'} style={[styles.textContainer, this.props.style]} onPress={this.bindings.togglePicker}>
           <View style={[styles.textContainer, this.props.style]}>
             <Text style={styles.text}>{this.getSelectedItem().props.label}</Text>
           </View>
