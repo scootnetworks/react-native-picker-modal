@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   text: {
+    color: 'black',
     textAlign: 'center',
     flex: 1,
   },
