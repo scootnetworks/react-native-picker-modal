@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "prop-types": "^15.6.1",
     "react-native-vector-icons": "^4.4.3"
   }
 }
