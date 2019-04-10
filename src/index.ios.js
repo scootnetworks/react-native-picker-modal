@@ -147,7 +147,7 @@ class PickerModal extends React.Component {
           onPress={this.bindings.togglePicker}
         >
           <View style={[styles.textContainer, this.props.style]}>
-            <Text style={styles.text}>
+            <Text style={[styles.text, this.props.textStyle]}>
               {this.getSelectedItem().props.label}
             </Text>
             <Icon name="arrow-drop-down" size={30} color="black" />

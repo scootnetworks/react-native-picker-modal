@@ -25,7 +25,7 @@ const PickerModal = props => {
   return (
     <View>
       <View pointerEvents={'none'} style={[styles.stylableTextOverlay, props.style]}>
-        <Text style={styles.text}>{props.selectedValue}</Text>
+        <Text style={[styles.text, props.textStyle]}>{props.selectedValue}</Text>
         <Icon name="arrow-drop-down" size={30} color="black" />
       </View>
       <Picker {...props} style={{opacity: 0}}>{props.children}</Picker>
